@@ -1,0 +1,15 @@
+site_name: ApplicationState
+repo_url: https://github.com/claytongulick/applicationstate
+site_author: Clayton Gulick, Joe Mills
+copyright: Copyright 2019 Clayton Gulick
+docs_dir: docs
+site_dir: site
+theme:
+  name: material
+  logo: img/logo_plain.svg
+nav:
+  - Home: index.md
+extra:
+  version: 0.2.2
+markdown_extensions:
+  - codehilite
