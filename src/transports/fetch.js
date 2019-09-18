@@ -70,14 +70,15 @@ export default class FetchTransport {
    * @param {Object} config.headers An object filled with key-value pairs to add as headers.
    */
   get(config) {
+    if (!config) config = {};
     return fetch(this.get_url, {
       method: "GET",
-      mode: config.mode || this._config.mode,
-      cache: config.cache || this._config.cache,
-      credentials: config.credentials || this._config.credentials,
+      mode: config.mode,
+      cache: config.cache,
+      credentials: config.credentials,
       headers: Object.assign({}, config.headers, DEFAULT_HEADERS),
-      redirect: config.redirect || this._config.redirect,
-      referrer: config.referrer || this._config.referrer,
+      redirect: config.redirect,
+      referrer: config.referrer,
     }).then(res => res.json());
   }
 
@@ -96,14 +97,15 @@ export default class FetchTransport {
    * @param {Object} config.headers An object filled with key-value pairs to add as headers.
    */
   patch(patch, config) {
+    if (!config) config = this._config;
     return fetch(this.patch_url, {
       method: "PATCH",
-      mode: config.mode || this._config.mode,
-      cache: config.cache || this._config.cache,
-      credentials: config.credentials || this._config.credentials,
+      mode: config.mode,
+      cache: config.cache,
+      credentials: config.credentials,
       headers: Object.assign({}, config.headers, DEFAULT_HEADERS),
-      redirect: config.redirect || this._config.redirect,
-      referrer: config.referrer || this._config.referrer,
+      redirect: config.redirect,
+      referrer: config.referrer,
       body: JSON.stringify(patch),
     }).then(res => res.json());
   }
