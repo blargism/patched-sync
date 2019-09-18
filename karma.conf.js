@@ -1,28 +1,28 @@
-module.exports = function (config) {
+module.exports = function(config) {
   config.set({
-    frameworks: ['mocha', 'chai'],
-    files: ['test/test.js'],
-    reporters: ['progress'],
-    port: 9876,  // karma web server port
+    frameworks: ["mocha", "chai"],
+    files: ["test/test.js"],
+    reporters: ["progress"],
+    port: 9876, // karma web server port
     colors: true,
     logLevel: config.LOG_INFO,
-    browsers: ['ChromeHeadless'],
+    browsers: ["Chromium"],
     autoWatch: false,
     // singleRun: false, // Karma captures browsers, runs the tests and exits
     concurrency: Infinity,
     preprocessors: {
-      "test/test.js": ["webpack"]
+      "test/test.js": ["webpack"],
     },
     webpack: {
-      mode: 'production',
-      devtool: 'none',
+      mode: "production",
+      devtool: "none",
       entry: {
-        bundle: './test/test.js',
+        bundle: "./test/test.js",
       },
       output: {
-        path: __dirname + '/',
-        filename: '[name].js'
-      }
-    }
-  })
-}
+        path: __dirname + "/",
+        filename: "[name].js",
+      },
+    },
+  });
+};
