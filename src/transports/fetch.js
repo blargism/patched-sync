@@ -6,7 +6,7 @@
  */
 
 const DEFAULT_HEADERS = {
-  "Content-Type": "application/json"
+  "Content-Type": "application/json",
 };
 
 /**
@@ -15,7 +15,7 @@ const DEFAULT_HEADERS = {
 export default class FetchTransport {
   /**
    * Construct a new FetchTransport.
-   * 
+   *
    * @param {String} get_url The GET URL to get the initial object.
    * @param {String} patch_url The PATCH URL to set patches to the server.
    * @param {Number} [interval] The interval in which to check for updates from the GET URL. If this is null or 0 it will be set to 30000 ms.
@@ -30,10 +30,10 @@ export default class FetchTransport {
       cache: "no-cache",
       credentials: "same-origin",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      redirect: 'follow',
-      referrer: 'no-referrer',
+      redirect: "follow",
+      referrer: "no-referrer",
     };
   }
 
@@ -48,19 +48,19 @@ export default class FetchTransport {
    * @param {Object} config.headers An object filled with key-value pairs to add as headers.
    */
   config(config) {
-    if (config.mode) this.config.mode = config.mode;
-    if (config.cache) this.config.cache = config.cache;
-    if (config.credentials) this.config.credentials = config.credentials;
-    if (config.redirect) this.config.redirect = config.redirect;
-    if (config.referrer) this.config.referrer = config.referrer;
-    if (config.headers) this.config.headers = Object.assign({}, this.config.headers, config.headers);
+    if (config.mode) this._config.mode = config.mode;
+    if (config.cache) this._config.cache = config.cache;
+    if (config.credentials) this._config.credentials = config.credentials;
+    if (config.redirect) this._config.redirect = config.redirect;
+    if (config.referrer) this._config.referrer = config.referrer;
+    if (config.headers) this._config.headers = Object.assign({}, this._config.headers, config.headers);
   }
 
   /**
    * Perform a GET request on the configured URL.
-   * 
+   *
    * The config object is not required and falls back to the defaults or the values provided to the `config` method.
-   * 
+   *
    * @param {Object} config The parameters to update within fetch.
    * @param {String} config.mode The CORS mode.
    * @param {String} config.cache The cache setting.
@@ -72,20 +72,20 @@ export default class FetchTransport {
   get(config) {
     return fetch(this.get_url, {
       method: "GET",
-      mode: config.mode || this.config.mode,
-      cache: config.cache || this.config.cache,
-      credentials: config.credentials || this.config.credentials,
+      mode: config.mode || this._config.mode,
+      cache: config.cache || this._config.cache,
+      credentials: config.credentials || this._config.credentials,
       headers: Object.assign({}, config.headers, DEFAULT_HEADERS),
-      redirect: config.redirect || this.config.redirect,
-      referrer: config.referrer || this.config.referrer,
+      redirect: config.redirect || this._config.redirect,
+      referrer: config.referrer || this._config.referrer,
     }).then(res => res.json());
   }
 
   /**
-   * Perform a JSON Patch request on the configured URL. 
-   * 
+   * Perform a JSON Patch request on the configured URL.
+   *
    * The config object is not required and falls back to the defaults or the values provided to the `config` method.
-   * 
+   *
    * @param {Object[]} patch The JSON Patch formatted changes to be sent to the server.
    * @param {Object} config The parameters to update within fetch.
    * @param {String} config.mode The CORS mode.
@@ -98,12 +98,12 @@ export default class FetchTransport {
   patch(patch, config) {
     return fetch(this.patch_url, {
       method: "PATCH",
-      mode: config.mode || this.config.mode,
-      cache: config.cache || this.config.cache,
-      credentials: config.credentials || this.config.credentials,
+      mode: config.mode || this._config.mode,
+      cache: config.cache || this._config.cache,
+      credentials: config.credentials || this._config.credentials,
       headers: Object.assign({}, config.headers, DEFAULT_HEADERS),
-      redirect: config.redirect || this.config.redirect,
-      referrer: config.referrer || this.config.referrer,
+      redirect: config.redirect || this._config.redirect,
+      referrer: config.referrer || this._config.referrer,
       body: JSON.stringify(patch),
     }).then(res => res.json());
   }

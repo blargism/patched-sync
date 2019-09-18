@@ -12,7 +12,7 @@ import jiff from "jiff";
 
 /**
  * Create and manage a patched sync object and connection
- * 
+ *
  * This class ties all the disparate parts of patched-sync together.
  * It's purpose is to listen to object changes, notify when object changes
  * come in from the server, manage object history, and keep the object
@@ -21,7 +21,7 @@ import jiff from "jiff";
 export default class PatchedSync {
   /**
    * Constructs a new instance of PatchedSync.
-   * 
+   *
    * @param {*} initial_object The object to be kept in sync.
    * @param {Object} config The configuration to be used to keep the object in sync.
    * @param {String} config.transport The type of transport used to communicate with the server, should be "xmlhttprequest", "fetch", "websocket", or an object that conforms to the transform API.
@@ -48,21 +48,21 @@ export default class PatchedSync {
     if (!config) throw new Error("A configuration object is required as the first parameter of the constructor.");
 
     if (config.transport) {
-      if (typeof config.transport === 'string') {
+      if (typeof config.transport === "string") {
         switch (config.transport) {
-          case 'xmlhttprequest':
+          case "xmlhttprequest":
             if (!config.get_url) throw new Error("Get URL must be defined (config.get_url)");
             if (!config.patch_url) throw new Error("Patch URL must be defined (config.patch_url)");
             this.transport = new XMLHttpRequestTransport(config.get_url, config.patch_url, config.interval || 30000);
             break;
 
-          case 'fetch':
+          case "fetch":
             if (!config.get_url) throw new Error("Get URL must be defined (config.get_url)");
             if (!config.patch_url) throw new Error("Patch URL must be defined (config.patch_url)");
             this.transport = new FetchTransport(config.get_url, config.patch_url, config.interval || 30000);
             break;
 
-          case 'websocket':
+          case "websocket":
             if (!config.socket_url) throw new Error("Socket URL must be defined (config.socket_url)");
             if (!config.get_message) throw new Error("Get message name is required (config.get_message)");
             if (!config.patch_message) throw new Error("Patch message name is required (config.patch_message)");
@@ -82,7 +82,7 @@ export default class PatchedSync {
 
   /**
    * Listen to a specific event.
-   * 
+   *
    * Event names are as follows:
    * - `get:start` - Fired when a GET request is sent to the transport.
    * - `get:end` - Fired when a GET request is completed successfully.
@@ -90,7 +90,7 @@ export default class PatchedSync {
    * - `patch:start` - Fired when a PATCH request starts.
    * - `patch:end` - Fired when a PATCH request completes successfully.
    * - `patch:error` - Fired when a PATCH request fails.
-   * 
+   *
    * @param {String} event_name The event name to listen to.
    * @param {String} [path] Currently un-used, but eventually it will allow functions to filter by object path.
    * @param {Function} fn The function to execute on that event.
@@ -131,12 +131,12 @@ export default class PatchedSync {
   }
 
   start() {
-    this.transport.start((obj) => {
+    this.transport.start(obj => {
       this._object = obj;
     });
   }
 
-  start() {
+  stop() {
     this.transport.stop();
   }
 
@@ -154,25 +154,25 @@ export default class PatchedSync {
 
   /**
    * This method takes an object and assigns it's values to the internal object.
-   * 
+   *
    * This works a lot like `Object.assign` except that it is careful to make sure
    * that nothing is removed with the assignment. The exception here is with arrays.
    * In that case there are some special indicators for push and remove, but otherwise
    * the changes are put in place of the prior object rather than a deep merge as
-   * the indexes within arrays are not stable enough to guaruntee we know it hasn't 
+   * the indexes within arrays are not stable enough to guaruntee we know it hasn't
    * changed and if the changed value was removed, added, or moved.
-   * 
+   *
    * There are also special operations that can be performed on objects and arrays.
    * For objects, you can ensure the removal of an element by using `PatchedSync.DELETE`
    * as the value.  This will be detected and the element of the object will be removed.
    * Note this does not work in arrays.
-   * 
+   *
    * For arrays, you can either pass in a replacement array that is dropped in place
    * of the old array or an object. We don't attempt a merge because it is nearly
    * impossible to determine if an object was changed, removed, or replaced reliably
    * since referential integrity can't be guarunteed.
    * The syntax is as follows:
-   * 
+   *
    * ```javascript
    * {
    *    operations: [
@@ -183,13 +183,13 @@ export default class PatchedSync {
    *    ]
    * }
    * ```
-   * 
+   *
    * These operations map directly to their JavaScript counterparts.
    * So `push` adds a new element to the array at the end, `unshift` pushes a new
    * element in at the beginning, and `splice` adds a new element at the specified
-   * index.  The other operation, `remove` also does a splice, but removes the 
+   * index.  The other operation, `remove` also does a splice, but removes the
    * element at that index.
-   * 
+   *
    * @param {Object} obj The object with changes to be applied to the main object.
    */
   async change(obj) {
@@ -204,22 +204,22 @@ export default class PatchedSync {
           for (let index = 0; index < operations.length; index++) {
             const operation = operations[index];
             switch (operation.op) {
-              case 'push':
+              case "push":
                 subject.push(operation.value);
                 break;
-              case 'splice':
+              case "splice":
                 subject.splice(operation.index, 0, operation.value);
                 break;
-              case 'unshift':
+              case "unshift":
                 subject.unshift(operation.value);
                 break;
-              case 'remove':
+              case "remove":
                 subject.splice(operation.index, 1);
                 break;
             }
           }
         }
-      } else if (typeof changes === 'object') {
+      } else if (typeof changes === "object") {
         const keys = Object.keys(changes);
         for (let index = 0; index < keys.length; index++) {
           const key = keys[index];
@@ -244,7 +244,7 @@ export default class PatchedSync {
       }
 
       return subject;
-    }
+    };
 
     const old_object = jiff.clone(this._object);
     this._object = deepChange(this._object, obj);
@@ -261,9 +261,9 @@ export default class PatchedSync {
 
   /**
    * Patch the internal object based on the provided object.
-   * 
+   *
    * This method is expecting the full object to be diffed and patched against the internal object.
-   * 
+   *
    * @param {Object} obj The object to perform the diff and patch on.
    */
   async patch(obj) {
@@ -304,14 +304,14 @@ export default class PatchedSync {
   }
 }
 
-const makeid = (length) => {
-  var result = '';
-  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+const makeid = length => {
+  var result = "";
+  var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   var charactersLength = characters.length;
   for (var i = 0; i < length; i++) {
     result += characters.charAt(Math.floor(Math.random() * charactersLength));
   }
   return result;
-}
+};
 
 PatchedSync.DELETE = "$$__&&__DELETE_$_&_$";
