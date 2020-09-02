@@ -40,12 +40,12 @@ export default class FetchTransport {
   /**
    * Set config options for fetch.
    * @param {Object} config The parameters to update within fetch.
-   * @param {String} config.mode The CORS mode.
-   * @param {String} config.cache The cache setting.
-   * @param {String} config.credentials The credentials setting.
-   * @param {String} config.redirect The redirect setting.
-   * @param {String} config.referrer The referrer setting.
-   * @param {Object} config.headers An object filled with key-value pairs to add as headers.
+   * @param {String} [config.mode] The CORS mode.
+   * @param {String} [config.cache] The cache setting.
+   * @param {String} [config.credentials] The credentials setting.
+   * @param {String} [config.redirect] The redirect setting.
+   * @param {String} [config.referrer] The referrer setting.
+   * @param {Object} [config.headers] An object filled with key-value pairs to add as headers.
    */
   config(config) {
     if (config.mode) this._config.mode = config.mode;
