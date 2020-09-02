@@ -71,6 +71,7 @@ export default class FetchTransport {
    */
   get(config) {
     if (!config) config = {};
+    config = Object.assign({}, config, this._config);
     return fetch(this.get_url, {
       method: "GET",
       mode: config.mode,
@@ -97,7 +98,8 @@ export default class FetchTransport {
    * @param {Object} config.headers An object filled with key-value pairs to add as headers.
    */
   patch(patch, config) {
-    if (!config) config = this._config;
+    if (!config) config = {};
+    config = Object.assign({}, config, this._config);
     return fetch(this.patch_url, {
       method: "PATCH",
       mode: config.mode,
