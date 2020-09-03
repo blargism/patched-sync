@@ -80,7 +80,10 @@ export default class FetchTransport {
       headers: Object.assign({}, config.headers, DEFAULT_HEADERS),
       redirect: config.redirect,
       referrer: config.referrer,
-    }).then(res => res.json());
+    }).then(res => {
+      if(res.status > 399) throw res;
+      return res.json();
+    });
   }
 
   /**
@@ -109,7 +112,10 @@ export default class FetchTransport {
       redirect: config.redirect,
       referrer: config.referrer,
       body: JSON.stringify(patch),
-    }).then(res => res.json());
+    }).then(res => {
+      if(res.status > 399) throw res;
+      return res.json();
+    });
   }
 
   start(fn) {

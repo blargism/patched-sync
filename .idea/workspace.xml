@@ -32,7 +32,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7825dfc1-c2b0-423e-aff6-daedd435d3b3" name="Default Changelist" comment="Fixed config passing to get and patch functions" />
+    <list default="true" id="7825dfc1-c2b0-423e-aff6-daedd435d3b3" name="Default Changelist" comment="Fixed config passing to get and patch functions">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/transports/fetch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/transports/fetch.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,7 +52,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../make-component" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -67,6 +70,7 @@
       <option name="presentableId" value="Default" />
       <updated>1599080834585</updated>
       <workItem from="1599080835704" duration="2841000" />
+      <workItem from="1599150959312" duration="232000" />
     </task>
     <task id="LOCAL-00001" summary="Updates to packages and comments">
       <created>1599080992337</created>
@@ -98,6 +102,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Updates to packages and comments" />
