@@ -32,7 +32,8 @@ export default class PatchedSync {
    * @param {String} config.patch_message The message name to use to send and receive patches from the server, required for the "websocket" transport.
    */
   constructor(config, initial_object) {
-    this._object = initial_object || {};
+    initial_object = initial_object || {};
+    this._object = jiff.clone(initial_object) || {};
     this._listeners = {
       "get:start": [],
       "get:end": [],
@@ -149,7 +150,7 @@ export default class PatchedSync {
   }
 
   get() {
-    return this._object;
+    return jiff.clone(this._object);
   }
 
   /**
@@ -256,7 +257,7 @@ export default class PatchedSync {
 
     this.notify("patch:end", this._object);
 
-    return this._object;
+    return jiff.clone(this._object);
   }
 
   /**

@@ -32,9 +32,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7825dfc1-c2b0-423e-aff6-daedd435d3b3" name="Default Changelist" comment="Fixed config passing to get and patch functions">
+    <list default="true" id="7825dfc1-c2b0-423e-aff6-daedd435d3b3" name="Default Changelist" comment="Fixed not throwing an error on 400+ responses with fetch.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/transports/fetch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/transports/fetch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/patched-sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/patched-sync.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +52,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../make-component" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -70,7 +70,8 @@
       <option name="presentableId" value="Default" />
       <updated>1599080834585</updated>
       <workItem from="1599080835704" duration="2841000" />
-      <workItem from="1599150959312" duration="232000" />
+      <workItem from="1599150959312" duration="906000" />
+      <workItem from="1599242395022" duration="303000" />
     </task>
     <task id="LOCAL-00001" summary="Updates to packages and comments">
       <created>1599080992337</created>
@@ -86,7 +87,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599081575092</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Fixed not throwing an error on 400+ responses with fetch.">
+      <created>1599151255341</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1599151255341</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -107,16 +115,19 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Updates to packages and comments" />
     <MESSAGE value="Fixed config passing to get and patch functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed config passing to get and patch functions" />
+    <MESSAGE value="Fixed not throwing an error on 400+ responses with fetch." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed not throwing an error on 400+ responses with fetch." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1599084884067">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2660" y="286" width="424" height="491" key="FileChooserDialogImpl" timestamp="1599155015610">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1599084884067" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1599081578694">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2660" y="286" width="424" height="491" key="FileChooserDialogImpl/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1599155015610" />
+    <state x="2472" y="263" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1599151261238">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1599081578694" />
+    <state x="2472" y="263" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1599151261238" />
   </component>
 </project>
