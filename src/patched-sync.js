@@ -123,6 +123,7 @@ export default class PatchedSync {
    * @param {*} [data] The data from the event, if any.
    */
   notify(event_name, data) {
+    data = jiff.clone(data);
     if (!this._listeners[event_name]) return;
 
     const listeners = this._listeners[event_name];
@@ -146,7 +147,7 @@ export default class PatchedSync {
     this._object = await this.transport.get();
     this.notify("get:end", this._object);
 
-    return this._object;
+    return jiff.clone(this._object);
   }
 
   get() {
